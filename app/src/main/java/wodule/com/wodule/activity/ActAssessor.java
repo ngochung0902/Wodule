@@ -21,7 +21,7 @@ import wodule.com.wodule.utils.APIUtils;
 
 public class ActAssessor extends AppCompatActivity implements View.OnClickListener {
     private ImageView iconAccount,iconBag,iconCalendar,iconStart,iconAvatar;
-    private TextView lbAccounting,lbAssessmentRecord,lbCalender,lbStartAssessment,lbName,tvIdExam,lbSchool,lbSex,lbAge;
+    private TextView lbAccounting,lbAssessmentRecord,lbCalender,lbStartAssessment,lbName,tvIdExam,lbSchool,lbSex,lbAge,lbLogout;
     private APIService mAPIService;
     private String token;
     @Override
@@ -29,6 +29,7 @@ public class ActAssessor extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_assessor);
         mAPIService = APIUtils.getAPIService();
+        overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
         token = getIntent().getStringExtra("token");
         getProfile();
         initUI();
@@ -50,7 +51,9 @@ public class ActAssessor extends AppCompatActivity implements View.OnClickListen
         lbSchool = (TextView) findViewById(R.id.lbSchool);
         tvIdExam = (TextView) findViewById(R.id.tvIdExam);
         lbName = (TextView) findViewById(R.id.lbName);
+        lbLogout = (TextView) findViewById(R.id.lbLogout);
 
+        lbLogout.setOnClickListener(this);
         iconAccount.setOnClickListener(this);
         lbAccounting.setOnClickListener(this);
         iconBag.setOnClickListener(this);
@@ -104,6 +107,10 @@ public class ActAssessor extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.lbStartAssessment:
                 startActivity(new Intent(ActAssessor.this,ActAssessmentStartA.class));
+                break;
+            case R.id.lbLogout:
+                startActivity(new Intent(ActAssessor.this,ActLogin.class));
+                finish();
                 break;
         }
     }

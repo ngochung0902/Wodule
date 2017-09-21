@@ -25,7 +25,7 @@ import wodule.com.wodule.adapter.ScoreAdapter;
 /**
  * Created by MyPC on 15/09/2017.
  */
-public class Frm_Part2_a extends Fragment implements View.OnClickListener {
+public class Frm_part2_a extends Fragment implements View.OnClickListener {
     private TextView btnScore, lbComment,tvTime;
     private ImageView ivDropdown, ivDropUp,ivNext,ivPlay;
     private EditText edComment;

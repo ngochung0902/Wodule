@@ -34,6 +34,7 @@ public class ActExaminer extends AppCompatActivity implements View.OnClickListen
         initUI();
         mAPIService = APIUtils.getAPIService();
         getProfile();
+        overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
     }
 
     private void initUI() {

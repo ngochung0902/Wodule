@@ -92,7 +92,7 @@ public class Frm_Part1_a extends Fragment implements View.OnClickListener {
             ivDropdown.setVisibility(View.VISIBLE);
         }
         if (v.getId()==R.id.ivNext){
-            Frm_Part2_a fragment1 = new Frm_Part2_a();
+            Frm_part2_a fragment1 = new Frm_part2_a();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.anim_enter, R.anim.anim_exit);

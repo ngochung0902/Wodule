@@ -65,28 +65,27 @@ public class FrmProfile3 extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btnSubmit:
                 Log.e("Object",
-                        FrmProfile.newUser.getLnFirst() +
-                                "\n"+FrmProfile.newUser.getAddress()  +
-                                "\n"+FrmProfile.newUser.getEthnicity() +
-                                "\n"+FrmProfile.newUser.getReligion() +
-                                "\n"+QTSConstrains.pictureFile.toString() +
-                                "\n"+FrmProfile.newUser.getEmail() +
-                                "\n"+FrmProfile.newUser.getLastName() +
-                                "\n"+FrmProfile.newUser.getCity() +
-                                "\n"+FrmProfile.newUser.getNationality() +
-                                "\n"+FrmProfile.newUser.getCode() +
-                                "\n"+FrmProfile.newUser.getPassword() +
-                                "\n"+FrmProfile.newUser.getNativeName() +
-                                "\n"+FrmProfile.newUser.getSuffix() +
-                                "\n"+FrmProfile.newUser.getFirstName() +
-                                "\n"+FrmProfile.newUser.getDateOfBirth() +
-                                "\n"+FrmProfile.newUser.getCountry() +
-                                "\n"+FrmProfile.newUser.getStatus() +
-                                "\n"+FrmProfile.newUser.getUserName() +
-                                "\n"+FrmProfile.newUser.getMiddleName() +
-                                "\n"+FrmProfile.newUser.getCountryOfBirth() +
-                                "\n"+FrmProfile.newUser.getTelephone() +
-                                "\n"+FrmProfile.newUser.getGender());
+                               "City             "+FrmProfile.newUser.getCity().toString()+"\n"+
+                               "Country          "+FrmProfile.newUser.getCountry().toString()+"\n"+
+                               "telephone        "+FrmProfile.newUser.getTelephone().toString()+"\n"+
+                               "nationality      "+FrmProfile.newUser.getNationality().toString()+"\n"+
+                               "status           "+FrmProfile.newUser.getStatus().toString()+"\n"+
+                               "gender           "+FrmProfile.newUser.getGender().toString()+"\n"+
+                               "username         "+FrmProfile.newUser.getUserName().toString()+"\n"+
+                               "email            "+FrmProfile.newUser.getEmail().toString()+"\n"+
+                               "password         "+FrmProfile.newUser.getPassword().toString()+"\n"+
+                               "code             "+FrmProfile.newUser.getCode().toString()+"\n"+
+                               "fist name        "+FrmProfile.newUser.getFirstName().toString()+"\n"+
+                               "middle name      "+FrmProfile.newUser.getMiddleName().toString()+"\n"+
+                               "last name        "+FrmProfile.newUser.getLastName().toString()+"\n"+
+                               "date_of_birth    "+FrmProfile.newUser.getDateOfBirth().toString()+"\n"+
+                               "country_of_birth "+FrmProfile.newUser.getCountryOfBirth().toString()+"\n"+
+                               "native name      "+FrmProfile.newUser.getNativeName().toString()+"\n"+
+                               "Suffx            "+FrmProfile.newUser.getSuffix().toString()+"\n"+
+                               "In_first         "+FrmProfile.newUser.getLnFirst().toString()+"\n"+
+                               "address          "+FrmProfile.newUser.getAddress().toString()+ FrmProfile.newUser.getAddress1().toString() +  FrmProfile.newUser.getAddress2().toString()+"\n"+
+                               "ethnicity        "+FrmProfile.newUser.getEthnicity().toString()+"\n"+
+                               "religion         "+FrmProfile.newUser.getReligion().toString());
                 new GetData().execute();
                 mCountDownTimer1 = new CountDownTimer(20000, 1000) {
 
@@ -131,78 +130,51 @@ public class FrmProfile3 extends Fragment implements View.OnClickListener {
         @Override
         protected String doInBackground(String... params) {
             final String status = "";
-
-//            File file = new File("/storage/emulated/0/avaWodule.jpg");
-//            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
-//            MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
             RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), QTSConstrains.pictureFile);
-            final MultipartBody.Part file = MultipartBody.Part.createFormData("picture",QTSConstrains.pictureFile.getName(),requestFile);
-            Log.e("error",file.toString());
-            mAPIService.postRegister(
-//                    FrmProfile.newUser.getLnFirst().toString(),
-//                    FrmProfile.newUser.getAddress().toString(),// + FrmProfile.newUser.getAddress1().toString() + FrmProfile.newUser.getAddress2().toString(),
-//                    FrmProfile.newUser.getEthnicity().toString(),
-//                    FrmProfile.newUser.getReligion().toString(),
-////                    file,
-                    FrmProfile.newUser.getLastName().toString(),
-                    FrmProfile.newUser.getEmail().toString(),
+
+            // MultipartBody.Part is used to send also the actual file name
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("uploaded_file", QTSConstrains.pictureFile.getName(), requestFile);
+            mAPIService.post(
                     FrmProfile.newUser.getCity().toString(),
-                    FrmProfile.newUser.getNationality(),
-//                    FrmProfile.newUser.getCode().toString(),
-                    FrmProfile.newUser.getPassword().toString(),
-//                    FrmProfile.newUser.getNativeName().toString(),
-//                    FrmProfile.newUser.getSuffix().toString(),
-                    FrmProfile.newUser.getFirstName().toString(),
-                    FrmProfile.newUser.getDateOfBirth().toString(),
                     FrmProfile.newUser.getCountry().toString(),
-                    FrmProfile.newUser.getStatus().toString(),
-                    FrmProfile.newUser.getUserName().toString(),
-                    FrmProfile.newUser.getMiddleName().toString(),
-                    FrmProfile.newUser.getCountryOfBirth().toString(),
                     FrmProfile.newUser.getTelephone().toString(),
-                    FrmProfile.newUser.getGender().toString()
+                    FrmProfile.newUser.getNationality().toString(),
+                    FrmProfile.newUser.getStatus().toString(),
+                    FrmProfile.newUser.getGender().toString(),
+                    FrmProfile.newUser.getUserName().toString(),
+                    FrmProfile.newUser.getEmail().toString(),
+                    FrmProfile.newUser.getPassword().toString(),
+                    FrmProfile.newUser.getCode().toString(),
+                    FrmProfile.newUser.getFirstName().toString(),
+                    FrmProfile.newUser.getMiddleName().toString(),
+                    FrmProfile.newUser.getLastName().toString(),
+                    FrmProfile.newUser.getDateOfBirth().toString(),
+                    FrmProfile.newUser.getCountryOfBirth().toString(),
+                    FrmProfile.newUser.getNativeName().toString(),
+                    FrmProfile.newUser.getSuffix().toString(),
+                    FrmProfile.newUser.getLnFirst().toString(),
+                    FrmProfile.newUser.getAddress().toString()+" "+ FrmProfile.newUser.getAddress1().toString() +" "+  FrmProfile.newUser.getAddress2().toString(),
+                    FrmProfile.newUser.getEthnicity().toString(),
+                    FrmProfile.newUser.getReligion().toString(),
+                    body
             ).enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    Log.e("error",FrmProfile.newUser.getLnFirst().toString()+"\n"+
-                            FrmProfile.newUser.getAddress().toString()+"\n"+
-                            FrmProfile.newUser.getEthnicity().toString()+"\n"+
-                            FrmProfile.newUser.getReligion().toString()+"\n"+
-                            file.toString()+"\n"+
-                            FrmProfile.newUser.getLastName().toString()+"\n"+
-                            FrmProfile.newUser.getEmail().toString()+"\n"+
-                            FrmProfile.newUser.getCity().toString()+"\n"+
-                            FrmProfile.newUser.getNationality()+"\n"+
-                            FrmProfile.newUser.getCode().toString()+"\n"+
-                            FrmProfile.newUser.getPassword().toString()+"\n"+
-                            FrmProfile.newUser.getNativeName().toString()+"\n"+
-                            FrmProfile.newUser.getSuffix().toString()+"\n"+
-                            FrmProfile.newUser.getFirstName().toString()+"\n"+
-                            FrmProfile.newUser.getDateOfBirth().toString()+"\n"+
-                            FrmProfile.newUser.getCountry().toString()+"\n"+
-                            FrmProfile.newUser.getStatus().toString()+"\n"+
-                            FrmProfile.newUser.getUserName().toString()+"\n"+
-                            FrmProfile.newUser.getMiddleName().toString()+"\n"+
-                            FrmProfile.newUser.getCountryOfBirth().toString()+"\n"+
-                            FrmProfile.newUser.getTelephone().toString()+"\n"+
-                            FrmProfile.newUser.getGender().toString());
-                    Log.e("response", response.toString());
-                    Log.e("reponse1", response.message().toString());
-                    Log.e("error",response.errorBody().contentType().toString());
-
-                    if (response.isSuccessful()) {
-                        Log.e("error",response.body().getError().toString());
-                        Log.e("Register", response.body().toString());
-//                        Log.e("response", response.body().getToken().toString());
-                        Log.e("response", response.message().toString());
+                    Log.e("error",response.toString());
+                    if (response.isSuccessful())
+                    {
+                        QTSHelp.ShowpopupMessage(getActivity(),"Success");
+                        getActivity().finish();
                         mProgressDialog.cancel();
                         checktimeout = false;
-                    } else if (!response.isSuccessful()) {
-                        Log.e("response", response.message().toString());
-                        checktimeout = false;
-                        mProgressDialog.cancel();
                     }
-                    Log.e("error",response.body().getError().toString());
+                    else
+                    {
+                        QTSHelp.ShowpopupMessage(getActivity(),"No Success");
+                        mProgressDialog.cancel();
+                        checktimeout = false;
+                    }
                 }
 
                 @Override

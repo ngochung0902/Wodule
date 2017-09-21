@@ -15,7 +15,7 @@ import wodule.com.wodule.R;
 /**
  * Created by MyPC on 14/09/2017.
  */
-public class FrmInstructions extends Fragment {
+public class frmInstructions extends Fragment {
     private TextView btnStartAssess;
     @Nullable
     @Override

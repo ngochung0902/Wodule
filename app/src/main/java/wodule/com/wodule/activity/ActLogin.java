@@ -286,14 +286,17 @@ public class ActLogin extends AppCompatActivity implements GoogleApiClient.OnCon
                                     if (response.body().getUser().getType().equalsIgnoreCase("examinee")) {
                                         Intent intent = new Intent(ActLogin.this, ActExaminer.class);
                                         intent.putExtra("token",token);
+                                        overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
                                         startActivity(intent);
+                                        finish();
                                     }
                                     else {
                                         Intent intent = new Intent(ActLogin.this, ActAssessor.class);
                                         intent.putExtra("token",token);
+                                        overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
                                         startActivity(intent);
+                                        finish();
                                     }
-                                    finish();
                                     mProgressDialog.cancel();
                                 }
                             }
@@ -307,7 +310,6 @@ public class ActLogin extends AppCompatActivity implements GoogleApiClient.OnCon
 //                        Intent intent = new Intent(ActLogin.this,ActExaminer.class);
 //                        startActivity(intent);
                         mProgressDialog.cancel();
-                        finish();
                         QTSHelp.setIsLogin(ActLogin.this,true);
                         checktimeout = false;
                     }
